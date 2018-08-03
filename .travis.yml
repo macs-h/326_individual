@@ -1,2 +1,5 @@
 language: python
-os: osx
+python:
+  - "3.6"
+script:
+  - python etude01/*.py
