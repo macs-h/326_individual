@@ -2,4 +2,4 @@ language: python
 python:
   - "3.6"
 script:
-  - python etude01/HVTrees.py
+  - python etude01/HVTrees.py 100 0.7
