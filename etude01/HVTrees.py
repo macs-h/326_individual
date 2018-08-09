@@ -1,69 +1,77 @@
-import matplotlib.pyplot as plt
+"""
+E1 - HV Trees
+
+@author Max Huang
+@since 08 August 2018
+"""
+
+# Import statements
 import sys
+from enum import Enum
+from tkinter import Tk, Canvas, Frame, BOTH
 
+# Enums
+Direction = Enum('Direction', 'horizontal vertical')
 
-drawHorizontal = True
-count = 0
-orderCount = 0
+# Constants
+WIDTH = 600
+HEIGHT = 450
 
-
-def drawLine(x, y, len, order):
-    global drawHorizontal, count, orderCount, factor
-
-    print("OC:", orderCount)
-    if order != orderCount:
-        # len *= factor
-        orderCount += 1
-        print("mod", count%2)
-        if count % 2 == 0:  # Decides whether the line should be vertical or horizontal.
-            count += 1
-            drawHorizontal = True
-            print(">>", len)
-            plt.plot([(x-len/2),(x+len/2)], [y,y], 'r-')
-            print('true')
-            #? what if I tried drawing the two lines at the ends of this line instead??
-            #? plt.plot([x-len/2,x-len/2], [y-len/2,y+len/2], 'b-')
-            #? plt.plot([x+len/2,x+len/2], [y-len/2,y+len/2], 'g-')
-            #? Issue - It's very messy!
-            drawLine(x+len/2, y, len*factor, order)
-            print("next x")
-            drawLine(x-len/2, y, len*factor, order)
-        else:
-            count += 1
-            drawHorizontal = False
-            print(">>>", len)
-            plt.plot([x,x], [(y-len/2),(y+len/2)], 'r-')
-            print('false')
-            drawLine(x, y+len/2, len*factor, order)
-            print("next y")
-            drawLine(x, y-len/2, len*factor, order)
-    else:
-        print("else")
-        return
-    return
-
-# Once recursion has hit the order limit, need to recurse back
-# to draw the rest of the lines.
-
-
-
-# print("Argv[0]: %s\n"
-#       "Argv[1]: %s" % (sys.argv[0], sys.argv[1]))
-#
-# print ("This is the name of the script: ", sys.argv[0])
-# print ("Number of arguments: ", len(sys.argv))
-# print ("The arguments are: " , str(sys.argv))
-
-plt.close('all')
-plt.figure()
-
+# Command line arguments
 order = int(sys.argv[1])
 factor = float(sys.argv[2])
 
-print("start")
-drawLine(0,0,5,order)
+# Variables
+x = WIDTH/2
+y = HEIGHT/2
+depth = 0
 
-# drawLine(0,0,5,0)
+# Setting up the canvas.
+root = Tk()
+root.title("HV Trees")
+canvas = Canvas(root, width=WIDTH, height=HEIGHT, bg='white')
+canvas.pack()
 
 
-plt.show()
+# Draws the line extending out from a given coordinate in a given direction.
+#
+# @param x - x coord.
+# @param y - y coord.
+# @param len - length of the line.
+# @param dir - an enum specifying the direction of the line.
+def draw(x, y, len, dir):
+    global canvas, root
+    if (dir == Direction.horizontal):
+        canvas.create_line(x-len/2, y, x+len/2, y)
+    else:
+        canvas.create_line(x, y-len/2, x, y+len/2)
+
+
+# A recursive function to draw the HV Tree.
+#
+# @param x - x coord.
+# @param y - y coord.
+# @param len - length of the line.
+# @param depth - the current depth of the tree.
+def line(x, y, len, depth):
+    global order, factor
+
+    if order == depth or len < 1:
+        return
+    else:
+        if depth % 2 == 0:
+            draw(x, y, len, dir = Direction.horizontal)
+            depth += 1
+            line(x+len/2, y, len*factor, depth)
+            return line(x-len/2, y, len*factor, depth)
+        else:
+            draw(x, y, len, dir = Direction.vertical)
+            depth += 1
+            line(x, y+len/2, len*factor, depth)
+            return line(x, y-len/2, len*factor, depth)
+
+
+# MAIN
+if __name__ == "__main__":
+    line(x, y, 300, depth)
+    root.mainloop()
