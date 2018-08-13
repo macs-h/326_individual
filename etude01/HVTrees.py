@@ -1,9 +1,8 @@
-"""
-E1 - HV Trees
+# E1 - HV Trees
+#
+# @author Max Huang
+# @since 08 August 2018
 
-@author Max Huang
-@since 08 August 2018
-"""
 
 # Import statements
 import sys
@@ -16,10 +15,6 @@ Direction = Enum('Direction', 'horizontal vertical')
 # Constants
 WIDTH = 600
 HEIGHT = 450
-
-# Command line arguments
-order = int(sys.argv[1])
-factor = float(sys.argv[2])
 
 # Variables
 x = WIDTH/2
@@ -73,5 +68,13 @@ def line(x, y, len, depth):
 
 # MAIN
 if __name__ == "__main__":
-    line(x, y, 300, depth)
-    root.mainloop()
+    # Command line arguments
+    order = int(sys.argv[1])
+    factor = float(sys.argv[2])
+    if factor >= 0 or factor < 1:
+        if order < 0:
+            order = 0
+        line(x, y, 300, depth)
+        root.mainloop()
+    else:
+        print("Factor must be between 0 and 1")
