@@ -57,24 +57,28 @@ def line(x, y, len, depth):
         if depth % 2 == 0:
             draw(x, y, len, dir = Direction.horizontal)
             depth += 1
-            line(x+len/2, y, len*factor, depth)
-            return line(x-len/2, y, len*factor, depth)
+            line(x+len/2, y, round(len*factor,0), depth)
+            return line(x-len/2, y, round(len*factor,0), depth)
         else:
             draw(x, y, len, dir = Direction.vertical)
             depth += 1
-            line(x, y+len/2, len*factor, depth)
-            return line(x, y-len/2, len*factor, depth)
+            line(x, y+len/2, round(len*factor,0), depth)
+            return line(x, y-len/2, round(len*factor,0), depth)
 
 
 # MAIN
 if __name__ == "__main__":
-    # Command line arguments
-    order = int(sys.argv[1])
-    factor = float(sys.argv[2])
-    if factor >= 0 or factor < 1:
-        if order < 0:
-            order = 0
-        line(x, y, 300, depth)
-        root.mainloop()
+    if len(sys.argv) < 3:
+        print("usage: python3.6 HVTrees.py <order> <factor>")
     else:
-        print("Factor must be between 0 and 1")
+        # Command line arguments
+        order = int(sys.argv[1])
+        factor = float(sys.argv[2])
+
+        if factor >= 0 or factor < 1:
+            if order < 0:
+                order = 0
+            line(x, y, 300, depth)
+            root.mainloop()
+        else:
+            print("Factor must be between 0 and 1")
