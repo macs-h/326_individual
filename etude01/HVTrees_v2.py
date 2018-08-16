@@ -2,6 +2,7 @@
 #
 # @author Max Huang
 # @since 08 August 2018
+# @version 2
 
 
 # Import statements
@@ -13,9 +14,9 @@ from tkinter import Tk, Canvas, Frame, BOTH
 Direction = Enum('Direction', 'horizontal vertical')
 
 # Constants
-WIDTH = 600
-HEIGHT = 450
-LENGTH = 300
+WIDTH = 800
+HEIGHT = 600
+LENGTH = 200
 
 # Variables
 x = WIDTH/2
@@ -38,9 +39,9 @@ canvas.pack()
 def draw(x, y, len, dir):
     global canvas, root
     if (dir == Direction.horizontal):
-        canvas.create_line(x-len/2, y, x+len/2, y)
+        canvas.create_line(x-len, y, x+len, y)
     else:
-        canvas.create_line(x, y-len/2, x, y+len/2)
+        canvas.create_line(x, y-len, x, y+len)
 
 
 # A recursive function to draw the HV Tree.
@@ -55,24 +56,18 @@ def line(x, y, len, depth):
     if order == depth or len < 1:
         return
     else:
-        len = (factor**depth) * LENGTH
-        len =round(len,1)
-        # print(len)
+        len = round((factor**depth) * LENGTH, 0)
         if depth % 2 == 0:
-            
-            # print("len %s\ndepth %s" % (len, depth))
             draw(x, y, len, dir = Direction.horizontal)
             depth += 1
-            line(x+len/2, y, len, depth)
-            line(x-len/2, y, len, depth)
+            line(x+len, y, len, depth)
+            line(x-len, y, len, depth)
             return
         else:
-            # len = (factor**depth) * LENGTH
-            # print("len %s\ndepth %s" % (len, depth))
             draw(x, y, len, dir = Direction.vertical)
             depth += 1
-            line(x, y+len/2, len, depth)
-            line(x, y-len/2, len, depth)
+            line(x, y+len, len, depth)
+            line(x, y-len, len, depth)
             return
 
 
@@ -88,7 +83,7 @@ if __name__ == "__main__":
         if factor >= 0 or factor < 1:
             if order < 0:
                 order = 0
-            line(x, y, 300, depth)
+            line(x, y, LENGTH, depth)
             root.mainloop()
         else:
             print("Factor must be between 0 and 1")
