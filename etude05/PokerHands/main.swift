@@ -5,7 +5,7 @@
 //  Created by Max Huang on 21/08/18.
 //  Copyright © 2018 Max Huang. All rights reserved.
 //
-//  Version 1.0
+//  Version 1.1
 
 import Foundation
 
@@ -71,6 +71,13 @@ while let input = readLine(strippingNewline: true) {
         // Invalid separator(s) used.
         validInput = false
         print("Invalid:", input)
+    }
+    
+    // Remove all duplicates from the deck.
+    inputCards = inputCards.reduce(into: [String]()) {
+        if !$0.contains($1) {
+            $0.append($1)
+        }
     }
     
     // If the input so far is valid, continue.

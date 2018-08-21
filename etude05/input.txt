@@ -21,3 +21,5 @@ TD/TS/TH/Tc/4H
 12H 10c 8d/Qd qC
 12H 10c 8dQdqC
 12H 10c 8d Qd-qC
+6s-6s-KC-13S-Ad
+6s-KC-6s-7D-KC

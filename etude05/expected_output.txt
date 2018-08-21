@@ -21,3 +21,5 @@ Invalid: 12H 10c-8d Qd qC
 Invalid: 12H 10c 8d/Qd qC
 Invalid: 12H 10c 8dQdqC
 Invalid: 12H 10c 8d Qd-qC
+Invalid: 6s-6s-KC-13S-Ad
+Invalid: 6s-KC-6s-7D-KC

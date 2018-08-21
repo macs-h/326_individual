@@ -1,7 +1,10 @@
 # Étude 05 - Poker Hands
-## Current Version: 1.0
+## Current Version: 1.1
+### Additional test case
+* Checking for duplicate cards in the deck before processing. If duplicates are found, the deck is treated as invalid.
 
-### Cases tested for:
+## Previous Versions
+### Cases tested for: (v1.0)
 * `<empty line>` or `<newline>`
 * Normal string (e.g. `hello`)
 * Consistent separators on one line (i.e. `/` or `-` or `<space>`)
