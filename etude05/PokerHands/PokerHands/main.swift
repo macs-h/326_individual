@@ -9,17 +9,29 @@
 
 import Foundation
 
+/**
+    A dictionary holding the numerical values for the corresponding letters.
+ */
 let cardStr: NSDictionary = [ "a" : "1",
                               "t" : "10",
                               "j" : "11",
                               "q" : "12",
                               "k" : "13" ]
 
+/**
+    A struct to define how to hold each card.
+ */
 struct Cards {
     var card: Int
     var suit: String
 }
 
+/**
+    Converts the numerical value of the card to a `String` value.
+ 
+    - parameter card:   The numerical value of the card to be converted.
+    - returns:  The corresponding `String` representation of that card.
+ */
 func getCardString(_ card:Int) -> String {
     if card == 1 {
         return "a"
@@ -34,17 +46,16 @@ func getCardString(_ card:Int) -> String {
     }
 }
 
-func prompt(_ prompt: String, strippingNewline: Bool = true) -> String? {
-    print(prompt, terminator:"")
-    return readLine(strippingNewline: strippingNewline)
-}
 
+while let input = readLine(strippingNewline: true) {
 
-while let input = prompt(""){
-    
+    // Holds the result of separating the input by 'separator' in an array.
     var inputCards = [String]()
+    
+    // Assume input is valid. Changed to `false` when invalid input is detected.
     var validInput: Bool = true
     
+    // Converts all input to lowercase for ease of String handling.
     let line = input.lowercased()
     
     if line.contains(" ") && !line.contains("/") && !line.contains("-") {
@@ -62,15 +73,16 @@ while let input = prompt(""){
         print("Invalid:", input)
     }
     
+    // If the input so far is valid, continue.
     if validInput {
         if inputCards.count != 5 {
             // If too many or not enough cards are given as input.
             print("Invalid:", input)
         } else {
-            // Valid input and correct amount of cards given.
-            // Do processing of cards.
             var deck = [Cards]()
             for eachCard in inputCards {
+                // Check if the card has a valid suit, if not then treat as
+                // invalid input.
                 if !eachCard.contains("c") && !eachCard.contains("d") &&
                     !eachCard.contains("h") && !eachCard.contains("s") {
                     print("Invalid:", input)
@@ -82,6 +94,9 @@ while let input = prompt(""){
                 var card = String( eachCard[startIndex..<endIndex!] )
                 let suit = eachCard.last!
                 
+                // If the card 'number' is not an integer, then find the
+                // corresponding integer representation of that card in the
+                // dictionary.
                 if Int(card) == nil {
                     card = cardStr[card] as! String
                 }
@@ -95,19 +110,21 @@ while let input = prompt(""){
                 return $0.card < $1.card
             })
             
-            var finalArray = [String]()
-            var aceArray = [String]()
+            var finalDeck = [String]()
+            var acesInDeck = [String]()
             for card in deck {
                 if card.card == 1 {
-                    aceArray.append( (getCardString(card.card) + card.suit).uppercased())
+                    acesInDeck.append( (getCardString(card.card) + card.suit).uppercased())
                 } else {
-                    finalArray.append( (getCardString(card.card) + card.suit).uppercased())
+                    finalDeck.append( (getCardString(card.card) + card.suit).uppercased())
                 }
             }
-            finalArray += aceArray
+            // This ensures that aces are always last in the deck (also sorted
+            // based on suit).
+            finalDeck += acesInDeck
             
             // Print off final result.
-            print(finalArray.joined(separator: " "))
+            print(finalDeck.joined(separator: " "))
             
         }
         
