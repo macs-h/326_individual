@@ -2,26 +2,16 @@
 #
 # @author Max Huang
 # @since 14 August 2018
-
+# @version 1.0
 
 # Import statements
 import sys
 from enum import Enum
 
-class card_enum(Enum):
-    ACE = 1
+moreInput = True
 
-cards = [
-    ['1', '']
-]
-
-cards = {
-    # "one": ["1", "a", "A"],
-    1: {"1", "a", "A"},
-    2: "two"
-}
-
-print(cards.get("two"))
-
-if "a" in cards.values():
-    print("yes")
+if __name__ == "__main__":
+    while moreInput:
+        CL = input("Input: ")
+        if CL == "":
+            moreInput = False

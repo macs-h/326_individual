@@ -1,0 +1,23 @@
+3D 6S KC KS AD
+3D 6S KC KS AD
+3D 6S KC KS AD
+Invalid: hello
+Invalid: 
+Invalid: 
+Invalid:   
+2C 2D 2H 2S 8H
+Invalid: 4H 8H 6D
+Invalid: 88 j)
+Invalid: 4H
+9S JS KC KD AD
+9S JS KC KD AD
+9S JS KC KD AD
+4H 10C 10D 10H 10S
+Invalid: 5h 8d 10s 9h
+Invalid:    
+8D 10C QC QD QH
+Invalid: 12H/10c 8d Qd qC
+Invalid: 12H 10c-8d Qd qC
+Invalid: 12H 10c 8d/Qd qC
+Invalid: 12H 10c 8dQdqC
+Invalid: 12H 10c 8d Qd-qC
