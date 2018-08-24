@@ -23,3 +23,21 @@ TD/TS/TH/Tc/4H
 12H 10c 8d Qd-qC
 6s-6s-KC-13S-Ad
 6s-KC-6s-7D-KC
+6s-KC-14s-7D-*d
+0s-KC-6s-7D-kc
+6s-KC-14s-7D-8d
+$d-KC-1s-7D-8d
+%c kc 4s 8d 2s
+kc 4s 8d 2s *c
+kc 4s 8d 2s @c
+kc 4s 8d 2s !c
+kc 4s 8d 2s $c
+kc 4s 8d 2s &c
+kc 4s 8d 3$ 2s
+kc 4s 8d ## 1s
+4s 3f 8d 9s 1a
+kc 4s 8d    2s
+14s 3d KC 13S Ad
+0s 3d KC 13S Ad
+1s 3d KC 13S Ad
+2s 3d KC 13S Ad

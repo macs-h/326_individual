@@ -23,3 +23,21 @@ Invalid: 12H 10c 8dQdqC
 Invalid: 12H 10c 8d Qd-qC
 Invalid: 6s-6s-KC-13S-Ad
 Invalid: 6s-KC-6s-7D-KC
+Invalid: 6s-KC-14s-7D-*d
+Invalid: 0s-KC-6s-7D-kc
+Invalid: 6s-KC-14s-7D-8d
+Invalid: $d-KC-1s-7D-8d
+Invalid: %c kc 4s 8d 2s
+Invalid: kc 4s 8d 2s *c
+Invalid: kc 4s 8d 2s @c
+Invalid: kc 4s 8d 2s !c
+Invalid: kc 4s 8d 2s $c
+Invalid: kc 4s 8d 2s &c
+Invalid: kc 4s 8d 3$ 2s
+Invalid: kc 4s 8d ## 1s
+Invalid: 4s 3f 8d 9s 1a
+Invalid: kc 4s 8d    2s
+Invalid: 14s 3d KC 13S Ad
+Invalid: 0s 3d KC 13S Ad
+3D KC KS AD AS
+2S 3D KC KS AD
