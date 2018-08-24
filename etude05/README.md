@@ -7,6 +7,11 @@
 * Checking for invalid characters for both card number and suit - throws an error if invalid.
 
 
+## Installation Instructions
+* Compilation: `swiftc main.swift`
+* To run: `swift main.swift`
+
+
 ## Previous Versions
 ### Cases tested for: (v1.1)
 * Checking for duplicate cards in the deck before processing. If duplicates are found, the deck is treated as invalid.
@@ -21,8 +26,3 @@
 * Invalid suits (or non-existent suits)
 * Special characters (e.g. `)`)
 * Testing that both letters (and corresponding numbers) give the same result (for special cards like `T`, `A`, `J`, `Q`, and `K`)
-
-
-## Installation Instructions
-* Compilation: `swiftc main.swift`
-* To run: `swift main.swift`
