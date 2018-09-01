@@ -1,10 +1,9 @@
 # Étude 05 - Poker Hands
-## Current Version: 2.0
+## Current Version: 2.1
 ### Changes
-* Introduced using an enum to declare a new custom error class `PKError` which holds `invalidInput` as a case. This is thrown whenever an invalid input is detected and handled at the end of the `do-catch` block. Printing to `stdout` as specified in the etude PDF.
-* This new approach to error handling is cleaner than having `if`/`else` statements with `break`.
-* Improved error checking using `guard` statements - much more idiomatic Swift.
-* Checking for invalid characters for both card number and suit - throws an error if invalid.
+* Check that the deck consists of 5 cards before checking for duplicates. If there are duplicates, return as invalid.
+* Ensures that the separators used only exist **between** the cards and not at the front or end of the deck, otherwise it is considered invalid.
+* Refactored "PKError" to "PHError" - incorrect naming in version 2.0
 
 
 ## Installation Instructions
@@ -13,10 +12,16 @@
 
 
 ## Previous Versions
-### Cases tested for: (v1.1)
+### Version 2.0
+* Introduced using an enum to declare a new custom error class `PKError` which holds `invalidInput` as a case. This is thrown whenever an invalid input is detected and handled at the end of the `do-catch` block. Printing to `stdout` as specified in the etude PDF.
+* This new approach to error handling is cleaner than having `if`/`else` statements with `break`.
+* Improved error checking using `guard` statements - much more idiomatic Swift.
+* Checking for invalid characters for both card number and suit - throws an error if invalid.
+
+### Version 1.1
 * Checking for duplicate cards in the deck before processing. If duplicates are found, the deck is treated as invalid.
 
-### Cases tested for: (v1.0)
+### Version 1.0
 * `<empty line>` or `<newline>`
 * Normal string (e.g. `hello`)
 * Consistent separators on one line (i.e. `/` or `-` or `<space>`)

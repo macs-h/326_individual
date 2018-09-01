@@ -5,14 +5,14 @@
 //  Created by Max Huang on 21/08/18.
 //  Copyright © 2018 Max Huang. All rights reserved.
 //
-//  Version 2.0
+//  Version 2.1
 
 import Foundation
 
 /**
     Custom exception to be thrown if there is invalid input.
  */
-enum PKError: Error {
+enum PHError: Error {
     case invalidInput
 }
 
@@ -64,16 +64,30 @@ while let input = readLine(strippingNewline: true) {
     
     do {
         if line.contains(" ") && !line.contains("/") && !line.contains("-") {
+            if line.first == " " || line.last == " " {
+                throw PHError.invalidInput
+            }
             // Separate based on whitespace.
             inputCards = line.split(separator: " ").map({String($0)})
         } else if line.contains("/") && !line.contains("-") && !line.contains(" ") {
+            if line.first == "/" || line.last == "/"{
+                throw PHError.invalidInput
+            }
             // Separate based on forward slash.
             inputCards = line.split(separator: "/").map({String($0)})
         } else if line.contains("-") && !line.contains("/") && !line.contains(" ") {
+            if line.first == "-" || line.last == "-"{
+                throw PHError.invalidInput
+            }
             // Separate based on dash.
             inputCards = line.split(separator: "-").map({String($0)})
         } else {
-            throw PKError.invalidInput
+            throw PHError.invalidInput
+        }
+        
+        // Check there are 5 cards in the deck.
+        guard inputCards.count == 5 else {
+            throw PHError.invalidInput
         }
         
         // Remove all duplicates from the deck.
@@ -83,9 +97,9 @@ while let input = readLine(strippingNewline: true) {
             }
         }
         
-        // Check there are 5 cards in the deck.
+        // Check there are 5 cards in the deck, after removing any duplicates.
         guard inputCards.count == 5 else {
-            throw PKError.invalidInput
+            throw PHError.invalidInput
         }
         
         var deck = [Cards]()
@@ -93,7 +107,7 @@ while let input = readLine(strippingNewline: true) {
             
             // Check that each card has a valid suit.
             guard eachCard.contains("c") || eachCard.contains("d") || eachCard.contains("h") || eachCard.contains("s") else {
-                    throw PKError.invalidInput
+                    throw PHError.invalidInput
             }
             
             let startIndex = eachCard.startIndex
@@ -108,13 +122,13 @@ while let input = readLine(strippingNewline: true) {
                     card = tmp
                 } else {
                     // Invalid string.
-                    throw PKError.invalidInput
+                    throw PHError.invalidInput
                 }
             }
             
             // Check that all cards in the deck are within the valid range.
             guard Int(card)! >= 1 && Int(card)! <= 13 else {
-                throw PKError.invalidInput
+                throw PHError.invalidInput
             }
             
             deck.append(Cards(card: Int(card)!, suit: String(suit)))
@@ -147,7 +161,7 @@ while let input = readLine(strippingNewline: true) {
         // Print off final result.
         print(finalDeck.joined(separator: " "))
         
-    } catch PKError.invalidInput {
+    } catch PHError.invalidInput {
         // Handle the error as per etude specifications.
         print("Invalid:", input)
     } // end do-catch block.
