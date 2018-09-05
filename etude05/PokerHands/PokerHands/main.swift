@@ -5,7 +5,7 @@
 //  Created by Max Huang on 21/08/18.
 //  Copyright © 2018 Max Huang. All rights reserved.
 //
-//  Version 2.1
+//  Version 2.1.1
 
 import Foundation
 
@@ -68,7 +68,7 @@ while let input = readLine(strippingNewline: true) {
                 throw PHError.invalidInput
             }
             // Separate based on whitespace.
-            inputCards = line.split(separator: " ").map({String($0)})
+            inputCards = line.split(separator: " ", omittingEmptySubsequences: false).map({String($0)})
         } else if line.contains("/") && !line.contains("-") && !line.contains(" ") {
             if line.first == "/" || line.last == "/"{
                 throw PHError.invalidInput

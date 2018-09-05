@@ -1,9 +1,8 @@
 # Étude 05 - Poker Hands
-## Current Version: 2.1
+
+## Current Version: 2.1.1
 ### Changes
-* Check that the deck consists of 5 cards before checking for duplicates. If there are duplicates, return as invalid.
-* Ensures that the separators used only exist **between** the cards and not at the front or end of the deck, otherwise it is considered invalid.
-* Refactored "PKError" to "PHError" - incorrect naming in version 2.0
+* Invalides a deck that has multiple whitespaces as separators between any two sets of cards.
 
 
 ## Installation Instructions
@@ -12,6 +11,11 @@
 
 
 ## Previous Versions
+### Version 2.1
+* Check that the deck consists of 5 cards before checking for duplicates. If there are duplicates, return as invalid.
+* Ensures that the separators used only exist **between** the cards and not at the front or end of the deck, otherwise it is considered invalid.
+* Refactored "PKError" to "PHError" - incorrect naming in version 2.0
+
 ### Version 2.0
 * Introduced using an enum to declare a new custom error class `PKError` which holds `invalidInput` as a case. This is thrown whenever an invalid input is detected and handled at the end of the `do-catch` block. Printing to `stdout` as specified in the etude PDF.
 * This new approach to error handling is cleaner than having `if`/`else` statements with `break`.
