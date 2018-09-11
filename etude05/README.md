@@ -1,8 +1,8 @@
 # Étude 05 - Poker Hands
 
-## Current Version: 2.1.1
+## Current Version: 2.1.2
 ### Changes
-* Invalides a deck that has multiple whitespaces as separators between any two sets of cards.
+* Invalides a deck that has multiple occurences of the same separators between any two sets of cards.
 
 
 ## Installation Instructions
@@ -11,6 +11,9 @@
 
 
 ## Previous Versions
+### Version: 2.1.2
+* Invalides a deck that has multiple whitespaces as separators between any two sets of cards.
+
 ### Version 2.1
 * Check that the deck consists of 5 cards before checking for duplicates. If there are duplicates, return as invalid.
 * Ensures that the separators used only exist **between** the cards and not at the front or end of the deck, otherwise it is considered invalid.

@@ -54,3 +54,11 @@ Invalid: 6s 3d kc 13s  ad
 Invalid: 6s   3d kc 13s ad
 Invalid: 6s  3d kc  13s ad
 Invalid: 6s     3d kc 13s ad
+Invalid: 6s/3d/KC//13S/Ad
+Invalid: 6s/3d/KC/13S//Ad
+Invalid: /6s/3d/KC/13S/Ad
+Invalid: 6s/3d/KC/13S/Ad/
+Invalid: 6s-3d-KC-13S-Ad-
+Invalid: -6s-3d-KC-13S-Ad
+Invalid: 6s-3d--KC-13S-Ad
+Invalid: 6s-3d-KC--13S-Ad
