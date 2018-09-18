@@ -1,8 +1,8 @@
 # Étude 05 - Poker Hands
 
-## Current Version: 2.1.2
+## Current Version: 2.2
 ### Changes
-* Invalides a deck that has multiple occurences of the same separators between any two sets of cards.
+* Moved the code where duplicates are checked to the end of the program, right after the point where the final deck is compiled together. This ensures that no duplicate cards can exist (e.g. duplicate `KC` and `13C` in the same deck).
 
 
 ## Installation Instructions
@@ -12,6 +12,9 @@
 
 ## Previous Versions
 ### Version: 2.1.2
+* Invalides a deck that has multiple occurences of the same separators between any two sets of cards.
+
+### Version: 2.1.1
 * Invalides a deck that has multiple whitespaces as separators between any two sets of cards.
 
 ### Version 2.1

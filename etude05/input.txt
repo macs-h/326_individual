@@ -62,3 +62,5 @@ kc 4s 8d    2s
 -6s-3d-KC-13S-Ad
 6s-3d--KC-13S-Ad
 6s-3d-KC--13S-Ad
+6s 3d KC 13C Ad
+10S TS 3d KC AD

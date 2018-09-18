@@ -5,7 +5,7 @@
 //  Created by Max Huang on 21/08/18.
 //  Copyright © 2018 Max Huang. All rights reserved.
 //
-//  Version 2.1.2
+//  Version 2.2
 
 import Foundation
 
@@ -85,18 +85,6 @@ while let input = readLine(strippingNewline: true) {
             throw PHError.invalidInput
         }
         
-        // Check there are 5 cards in the deck.
-        guard inputCards.count == 5 else {
-            throw PHError.invalidInput
-        }
-        
-        // Remove all duplicates from the deck.
-        inputCards = inputCards.reduce(into: [String]()) {
-            if !$0.contains($1) {
-                $0.append($1)
-            }
-        }
-        
         // Check there are 5 cards in the deck, after removing any duplicates.
         guard inputCards.count == 5 else {
             throw PHError.invalidInput
@@ -157,6 +145,18 @@ while let input = readLine(strippingNewline: true) {
         // This ensures that aces are always last in the deck (also sorted
         // based on suit).
         finalDeck += acesInDeck
+        
+        // Remove all duplicates from the deck.
+        finalDeck = finalDeck.reduce(into: [String]()) {
+            if !$0.contains($1) {
+                $0.append($1)
+            }
+        }
+        
+        // Check there are 5 cards in the deck, after removing any duplicates.
+        guard finalDeck.count == 5 else {
+            throw PHError.invalidInput
+        }
         
         // Print off final result.
         print(finalDeck.joined(separator: " "))
