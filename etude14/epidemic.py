@@ -56,28 +56,19 @@ def updateNeighbours(row, col):
 if __name__ == '__main__':
 
     while True:
-        # try:
         inputGrid = []
         actualGrid = []
         noInput = False
-        # print("--")
-        # line = input()
         while True:
             try:
                 line = input()
-                # print(line)
                 if line == "":
                     break
-                # print(line)
                 col = line.split()
                 inputGrid.append(col)
                 actualGrid.append([0]*len(col))
-                # line = input()
-                # print("END")
             except EOFError:
                 noInput = True
-                # print("EOF")
-                # exit(0)
                 break
 
         for row in range(len(inputGrid)):
@@ -104,7 +95,6 @@ if __name__ == '__main__':
 
 
         # Print out the final grid.
-        # print("===")
         for row in range(len(actualGrid)):
             for col in range(len(actualGrid[row])):
                 print(actualGrid[row][col], end=" ")
