@@ -15,19 +15,47 @@ class S(Enum):
     NONSICK = '.'
 
 class Node:
-    def __init__(self, state, left, right, top, bottom):
+    def __init__(self, state, neighbours):
         self.state = state
-        self.left = left
-        self.right = right
-        self.top = top
-        self.bottom = bottom
+        self.neighbours = neighbours
 
-    def toString(self):
-        return self.state.value
+    # def toString(self):
+    #     return self.state.value
 
     def __str__(self):
         # return self.state.name
         return self.state.value
+
+#*****************************************************************************80
+
+def checkNeighboursOf(node):
+    global actualGrid
+    count = 0
+    for neighbour in node.neighbours:
+        if actualGrid[neighbour[0]][neighbour[1]].state == S.SICK:
+            count += 1
+
+    return count
+
+#*****************************************************************************80
+
+def updateNeighbours(row, col):
+    neighbours = []
+    #& Check left
+    if row-1 >= 0:
+        #& Yes top.
+        neighbours.append([row-1, col])
+    if row+1 <= len(inputGrid)-1:
+        #& Yes bottom.
+        neighbours.append([row+1, col])
+    if col-1 >= 0:
+        #& Yes left.
+        neighbours.append([row, col-1])
+    if col+1 <= len(inputGrid[row])-1:
+        #& Yes right.
+        neighbours.append([row, col+1])
+
+    return neighbours
 
 #*****************************************************************************80
 
@@ -47,171 +75,55 @@ if __name__ == '__main__':
         except:
             break
 
-    print()
-    print(actualGrid)
-    print()
+
     for row in range(len(inputGrid)):
-        # print(len(inputGrid))
-        # print(row)
-        # len(inputGrid)-1
         for col in range(len(inputGrid[row])):
-            # print(len(inputGrid[row]))
-            if row == 0:
-                #& Top row.
-                if col == 0:
-                    #& Top left.
-                    if inputGrid[row][col] == "I":
-                        actualGrid[row][col] = Node(S.IMMUNE, None, actualGrid[row][col+1], None, actualGrid[row+1][col])
-                    elif inputGrid[row][col] == "S":
-                        actualGrid[row][col] = Node(S.SICK, None, actualGrid[row][col+1], None, actualGrid[row+1][col])
-                    elif inputGrid[row][col] == ".":
-                        actualGrid[row][col] = Node(S.NONSICK, None, actualGrid[row][col+1], None, actualGrid[row+1][col])
-                elif col == len(inputGrid[row])-1:
-                    #& Top right.
-                    if inputGrid[row][col] == "I":
-                        actualGrid[row][col] = Node(S.IMMUNE, actualGrid[row][col-1], None, None, actualGrid[row+1][col])
-                    elif inputGrid[row][col] == "S":
-                        actualGrid[row][col] = Node(S.SICK, actualGrid[row][col-1], None, None, actualGrid[row+1][col])
-                    elif inputGrid[row][col] == ".":
-                        actualGrid[row][col] = Node(S.NONSICK, actualGrid[row][col-1], None, None, actualGrid[row+1][col])
-                else:
-                    #& Top row
-                    if inputGrid[row][col] == "I":
-                        actualGrid[row][col] = Node(S.IMMUNE, actualGrid[row][col-1], actualGrid[row][col+1], None, actualGrid[row+1][col])
-                    elif inputGrid[row][col] == "S":
-                        actualGrid[row][col] = Node(S.SICK, actualGrid[row][col-1], actualGrid[row][col+1], None, actualGrid[row+1][col])
-                    elif inputGrid[row][col] == ".":
-                        actualGrid[row][col] = Node(S.NONSICK, actualGrid[row][col-1], actualGrid[row][col+1], None, actualGrid[row+1][col])
+            neighbours = updateNeighbours(row, col)
+            # #& Check left
+            # # print(row, col)
+            # if row-1 >= 0:
+            #     #& Yes top.
+            #     neighbours.append([row-1, col])
+            # if row+1 <= len(inputGrid)-1:
+            #     #& Yes bottom.
+            #     neighbours.append([row+1, col])
+            # if col-1 >= 0:
+            #     #& Yes left.
+            #     neighbours.append([row, col-1])
+            # if col+1 <= len(inputGrid[row])-1:
+            #     #& Yes right.
+            #     neighbours.append([row, col+1])
+            # # print()
 
-            elif row == len(inputGrid)-1:
-                #& Bottom row.
-                if col == 0:
-                    #& Bottom left.
-                    if inputGrid[row][col] == "I":
-                        actualGrid[row][col] = Node(S.IMMUNE, None, actualGrid[row][col+1], actualGrid[row-1][col], None)
-                    elif inputGrid[row][col] == "S":
-                        actualGrid[row][col] = Node(S.SICK, None, actualGrid[row][col+1], actualGrid[row-1][col], None)
-                    elif inputGrid[row][col] == ".":
-                        actualGrid[row][col] = Node(S.NONSICK, None, actualGrid[row][col+1], actualGrid[row-1][col], None)
-                elif col == len(inputGrid[row])-1:
-                    #& Bottom right.
-                    if inputGrid[row][col] == "I":
-                        actualGrid[row][col] = Node(S.IMMUNE, actualGrid[row][col-1], None, actualGrid[row-1][col], None)
-                    elif inputGrid[row][col] == "S":
-                        actualGrid[row][col] = Node(S.SICK, actualGrid[row][col-1], None, actualGrid[row-1][col], None)
-                    elif inputGrid[row][col] == ".":
-                        actualGrid[row][col] = Node(S.NONSICK, actualGrid[row][col-1], None, actualGrid[row-1][col], None)
-                else:
-                    #& Bottom row.
-                    if inputGrid[row][col] == "I":
-                        actualGrid[row][col] = Node(S.IMMUNE, actualGrid[row][col-1], actualGrid[row][col+1], actualGrid[row-1][col], None)
-                    elif inputGrid[row][col] == "S":
-                        actualGrid[row][col] = Node(S.SICK, actualGrid[row][col-1], actualGrid[row][col+1], actualGrid[row-1][col], None)
-                    elif inputGrid[row][col] == ".":
-                        actualGrid[row][col] = Node(S.NONSICK, actualGrid[row][col-1], actualGrid[row][col+1], actualGrid[row-1][col], None)
-
-            else:
-                #& Other rows.
-                if col == 0:
-                    #& First column.
-                    if inputGrid[row][col] == "I":
-                        actualGrid[row][col] = Node(S.IMMUNE, None, actualGrid[row][col+1], actualGrid[row-1][col], actualGrid[row+1][col])
-                    elif inputGrid[row][col] == "S":
-                        actualGrid[row][col] = Node(S.SICK, None, actualGrid[row][col+1], actualGrid[row-1][col], actualGrid[row+1][col])
-                    elif inputGrid[row][col] == ".":
-                        actualGrid[row][col] = Node(S.NONSICK, None, actualGrid[row][col+1], actualGrid[row-1][col], actualGrid[row+1][col])
-                elif col == len(inputGrid[row])-1:
-                    #& Middle columns
-                    if inputGrid[row][col] == "I":
-                        actualGrid[row][col] = Node(S.IMMUNE, actualGrid[row][col-1], None, actualGrid[row-1][col], actualGrid[row+1][col])
-                    elif inputGrid[row][col] == "S":
-                        actualGrid[row][col] = Node(S.SICK, actualGrid[row][col-1], None, actualGrid[row-1][col], actualGrid[row+1][col])
-                    elif inputGrid[row][col] == ".":
-                        actualGrid[row][col] = Node(S.NONSICK, actualGrid[row][col-1], None, actualGrid[row-1][col], actualGrid[row+1][col])
-                else:
-                    #& Last column.
-                    if inputGrid[row][col] == "I":
-                        actualGrid[row][col] = Node(S.IMMUNE, actualGrid[row][col-1], actualGrid[row][col+1], actualGrid[row-1][col], actualGrid[row+1][col])
-                    elif inputGrid[row][col] == "S":
-                        actualGrid[row][col] = Node(S.SICK, actualGrid[row][col-1], actualGrid[row][col+1], actualGrid[row-1][col], actualGrid[row+1][col])
-                    elif inputGrid[row][col] == ".":
-                        actualGrid[row][col] = Node(S.NONSICK, actualGrid[row][col-1], actualGrid[row][col+1], actualGrid[row-1][col], actualGrid[row+1][col])
+            # print(row, col)
+            if inputGrid[row][col] == "S":
+                actualGrid[row][col] = Node(S.SICK, neighbours)
+            elif inputGrid[row][col] == "I":
+                actualGrid[row][col] = Node(S.IMMUNE, neighbours)
+            elif inputGrid[row][col] == ".":
+                actualGrid[row][col] = Node(S.NONSICK, neighbours)
 
 
-                        
+    # print("--",checkNeighboursOf(actualGrid[0][1]))
+
+
+    #& Infect
+    while True:
+        noChange = True
+        for row in range(len(actualGrid)):
+            for col in range(len(actualGrid[row])):
+                if checkNeighboursOf(actualGrid[row][col]) >= 2 and actualGrid[row][col].state == S.NONSICK:
+                    actualGrid[row][col].state = S.SICK
+                    print(actualGrid[row][col].state)
+                    noChange = False
+        if noChange:
+            break
+
     #?----------------------
 
+    print()
     for row in range(len(actualGrid)):
         for col in range(len(actualGrid[row])):
             print(actualGrid[row][col], end=" ")
         print()
-
-
-
-
-
-    #!------------------------------------------------------------------------80
-    # # Process the input.
-    # gridLen = len(inputGrid) + 2
-    # # actualGrid = [[None for i in range(gridLen + 2)] for j in range(gridLen + 2)]
-    # print()
-    # actualGrid = [[None]*(gridLen)]*(gridLen)
-    # actualGrid = []*gridLen
-    # # for row in actualGrid:
-    # #     row.append([]*gridLen)
-
-    # for row in actualGrid:
-    #     print(row)
-
-    # for row in range(gridLen):
-    #     #& If FIRST row, make IMMUNE.
-    #     if row == 0:
-    #         for col in range(len(actualGrid[row])):
-    #             #& If first, no need for pointers to sides.
-    #             if col == 0:
-    #                 #& Top LEFT corner.
-    #                 actualGrid[row][col] = Node(S.IMMUNE, None, actualGrid[row][col+1], None, actualGrid[row+1][col])
-    #             elif col == gridLen-1:
-    #                 #& Top RIGHT corner.
-    #                 actualGrid[row][col] = Node(S.IMMUNE, actualGrid[row][col-1], None, None, actualGrid[row+1][col])
-    #             else:
-    #                 #& Top row.
-    #                 actualGrid[row][col] = Node(S.IMMUNE, actualGrid[row][col-1], actualGrid[row][col+1], None, actualGrid[row+1][col])
-
-    #     #& If LAST row, make IMMUNE.
-    #     elif row == gridLen-1:
-    #         for col in range(len(actualGrid[row])):
-    #             #& If last, no need for pointers to sides.
-    #             if col == 0:
-    #                 #& Bottom LEFT corner.
-    #                 actualGrid[row][col] = Node(S.IMMUNE, None, actualGrid[row][col+1], actualGrid[row-1][col], None)
-    #             elif col == gridLen-1:
-    #                 #& Bottom RIGHT corner.
-    #                 actualGrid[row][col] = Node(S.IMMUNE, actualGrid[row][col-1], None, actualGrid[row-1][col], None)
-    #             else:
-    #                 print(row, col)
-    #                 #& Bottom row.
-    #                 actualGrid[row][col] = Node(S.IMMUNE, actualGrid[row][col-1], actualGrid[row][col+1], actualGrid[row-1][col], None)
-
-    #     else:
-    #         print(row)
-    #         for col in range(len(actualGrid[row])):
-
-    #             #& If not first or last row.
-    #             if col == 0:
-    #                 #& If FIRST col, make IMMUNE.
-    #                 print("-", row, col)
-    #                 actualGrid[row][col] = Node(S.SICK, None, actualGrid[row][col+1], actualGrid[row-1][col], actualGrid[row+1][col])
-    #             elif col == gridLen-1:
-    #                 #& If LAST col, make IMMUNE.
-    #                 print("--", row, col)
-    #                 actualGrid[row][col] = Node(S.SICK, actualGrid[row][col-1], None, actualGrid[row-1][col], actualGrid[row+1][col])
-
-    # print()
-    # # n = Node(S.SICK, None, None, None, None)
-    # for row in range(gridLen):
-    #     for col in range(len(actualGrid[row])):
-    #         print(actualGrid[row][col], end=" ")
-    #         # print(n)
-    #     print("\n", end="")
 
