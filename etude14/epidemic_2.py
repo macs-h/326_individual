@@ -85,6 +85,25 @@ def getTime(time_elapsed):
 if __name__ == '__main__':
     start_time = time.time()
 
+    #?------------------------------------------------------------------------80
+    # When checking neighbours, if the neighbour does not exist then treat it
+    #  as if that neighbour is immune.
+    #
+    # The minimum amount of sick cells required is the perimeter of immune
+    #  cells divided by 4. The ceiling of: (Immune.count)/4
+    #
+    # When placing sick cells, first place at cells which have an immune
+    #  neighbour count of >= 3 because impossible to infect those cells.
+    # Place remainder of sick cells randomly - generate this enough times until
+    #  either the board is completely infected or you need to increase the
+    #  starting number of sick cells by 1.
+    #
+    # As soon as there is no change on an infection cycle, break out from the
+    #  loop.
+    #
+    # Two sick cells should not be adjacent to each other.
+    #?------------------------------------------------------------------------80
+
     while True:
         inputGrid = []
         actualGrid = []
@@ -190,6 +209,7 @@ if __name__ == '__main__':
 
             count += 1
             if count % 12000 == 0:
+                print("UP at: {} | min: {}".format(count, minSickCells))
                 minSickCells += 1
                 numSickCells += 1
             if fullyInfected:
