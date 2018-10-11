@@ -64,7 +64,7 @@ if __name__ == '__main__':
                 line = input()
                 if line == "":
                     break
-                col = line.split()
+                col = list(line)
                 inputGrid.append(col)
                 actualGrid.append([0]*len(col))
             except EOFError:
