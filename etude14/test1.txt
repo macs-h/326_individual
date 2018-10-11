@@ -1,63 +1,63 @@
-S . . S
-. S I .
-. I S .
-. . . S
+S..S
+.SI.
+.IS.
+...S
 
-. I
-S .
+.I
+S.
 
-. .
-. .
+..
+..
 
-I I
-I I
+II
+II
 
-. I
-I S
+.I
+IS
 
-. S .
-S . .
-. . .
+.S.
+S..
+...
 
-S S . S
-I I . I
-S . I .
+SS.S
+II.I
+S.I.
 
-S S S S
+SSSS
 
-. . . .
+....
 
-I I I I
+IIII
 
-. . . .
-. . S .
-. S S .
-. . . .
+....
+..S.
+.SS.
+....
 
-. . . S
-. . S .
-. S . .
-S . . .
+...S
+..S.
+.S..
+S...
 
-I I . S
-. . S .
-I I I I
-. . S .
+II.S
+..S.
+IIII
+..S.
 
-. . S .
-. S . .
-. S . .
-. I . .
+..S.
+.S..
+.S..
+.I..
 
-. . S .
-. S . .
-. S . S
-. I . .
+..S.
+.S..
+.S.S
+.I..
 
-. . . S . I .
-S . . I . S S
-. . S S . S .
-. . . . S . .
-. . . . . . .
-I I . S . . I
-. . . S . . S
+...S.I.
+S..I.SS
+..SS.S.
+....S..
+.......
+II.S..I
+...S..S

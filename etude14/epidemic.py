@@ -24,11 +24,10 @@ class Node:
 
 #*****************************************************************************80
 
-def checkNeighboursOf(node):
-    global actualGrid
+def checkNeighboursOf(grid, node):
     count = 0
     for neighbour in node.neighbours:
-        if actualGrid[neighbour[0]][neighbour[1]].state == S.SICK:
+        if grid[neighbour[0]][neighbour[1]].state == S.SICK:
             count += 1
     return count
 
@@ -87,7 +86,7 @@ if __name__ == '__main__':
             noChange = True
             for row in range(len(actualGrid)):
                 for col in range(len(actualGrid[row])):
-                    if checkNeighboursOf(actualGrid[row][col]) >= 2 and actualGrid[row][col].state == S.NONSICK:
+                    if checkNeighboursOf(actualGrid, actualGrid[row][col]) >= 2 and actualGrid[row][col].state == S.NONSICK:
                         actualGrid[row][col].state = S.SICK
                         noChange = False
             if noChange:
