@@ -96,7 +96,7 @@ if __name__ == '__main__':
         # Print out the final grid.
         for row in range(len(actualGrid)):
             for col in range(len(actualGrid[row])):
-                print(actualGrid[row][col], end=" ")
+                print(actualGrid[row][col], end="")
             print()
         print()
 

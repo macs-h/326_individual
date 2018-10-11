@@ -208,8 +208,8 @@ if __name__ == '__main__':
                         fullyInfected = False
 
             count += 1
-            if count % 12000 == 0:
-                print("UP at: {} | min: {}".format(count, minSickCells))
+            if count % 25000 == 0:
+                # print("UP at: {} | min: {}".format(count, minSickCells))
                 minSickCells += 1
                 numSickCells += 1
             if fullyInfected:
@@ -223,10 +223,10 @@ if __name__ == '__main__':
 
         for row in range(len(initialGrid)):
             for col in range(len(initialGrid[row])):
-                print(initialGrid[row][col].state.value, end=" ")
+                print(initialGrid[row][col].state.value, end="")
             print()
         print()
 
         if noInput:
-            print(getTime(time.time() - start_time))
+            # print(getTime(time.time() - start_time))
             exit(0)
