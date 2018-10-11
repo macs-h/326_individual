@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# E14 - Epidemic
+# E14 - Epidemic (pt 1)
 #
 # @author Max Huang
 # @since 25 September 2018
@@ -36,7 +36,7 @@ def checkNeighboursOf(node):
 
 def updateNeighbours(row, col):
     neighbours = []
-    #& Check left
+
     if row-1 >= 0:
         #& Yes top.
         neighbours.append([row-1, col])
